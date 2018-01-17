@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/esquinas/deployable.svg?branch=master)](https://travis-ci.org/esquinas/deployable)
 # deployable.site
 > See this project deployed at https://deployable.site
 
