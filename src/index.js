@@ -1,46 +1,6 @@
 import { h, app } from 'hyperapp'
 import './index.scss'
 
-/** 
- *     HIPERAPP
- */
-
-//    STATE
-const state = { 
-  months: UI_MSG.initialMonth, 
-  year:   UI_MSG.initialYear,
-  title:  UI_MSG.initialMessage
-              }
-
-//    ACTIONS
-const actions = {
-  update: () => state =>  ({
-    title: monthsSinceSalting(padNum(state.months) + state.year)
-  }),
-  updateMonths: (newMonths) => state =>  ({ months: newMonths  }),
-  updateYear: (newYear) => state =>  ({ year: newYear  }),
-  reset: () => state => ({title: UI_MSG.initialMessage, months: UI_MSG.initialMonth, year: UI_MSG.initialYear})
-  }
-
-//    VIEW
-const view = (state, actions) =>  
-  <div className='card white z-depth-3 hoverable'>
-    <CardImage/>
-    <div className='card-content'>
-      <CardTitle state={state}/>
-      <CardText/>
-      <div className='card-action row'>
-        <MonthsInput state={state} actions={actions}/>
-        <YearInput state={state} actions={actions}/>
-      </div>
-      <CardButtons state={state} actions={actions}/>
-    </div>
-  </div>
-
-const rootElem = document.getElementById('app')
-
-app(state, actions, view, rootElem)
-
 const UI_MSG = {
   // 1) \xA0 = &nbsp;                      1___    
   initialMessage: 'Calculadora de tiempo de\xA0curación.',
@@ -251,4 +211,44 @@ const YearInput = ({state, actions}) => (
     data-error={UI_MSG.validationError} 
     data-success={UI_MSG.validationSuccess}>Última/s cifra/s</label>
   </div>)
+
+/** 
+ *     HIPERAPP
+ */
+
+//    STATE
+const state = { 
+  months: UI_MSG.initialMonth, 
+  year:   UI_MSG.initialYear,
+  title:  UI_MSG.initialMessage
+              }
+
+//    ACTIONS
+const actions = {
+  update: () => state =>  ({
+    title: monthsSinceSalting(padNum(state.months) + state.year)
+  }),
+  updateMonths: (newMonths) => state =>  ({ months: newMonths  }),
+  updateYear: (newYear) => state =>  ({ year: newYear  }),
+  reset: () => state => ({title: UI_MSG.initialMessage, months: UI_MSG.initialMonth, year: UI_MSG.initialYear})
+  }
+
+//    VIEW
+const view = (state, actions) =>  
+  <div className='card white z-depth-3 hoverable'>
+    <CardImage/>
+    <div className='card-content'>
+      <CardTitle state={state}/>
+      <CardText/>
+      <div className='card-action row'>
+        <MonthsInput state={state} actions={actions}/>
+        <YearInput state={state} actions={actions}/>
+      </div>
+      <CardButtons state={state} actions={actions}/>
+    </div>
+  </div>
+
+const rootElem = document.getElementById('app')
+
+app(state, actions, view, rootElem)
 
