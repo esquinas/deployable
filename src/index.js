@@ -97,7 +97,6 @@ const humanizeMonths = (monthsFloat) => {
   if (weeks  !== '') list.push(weeks)
   if (days   !== '') list.push(days)
 
-  console.log(list)
   return `${enumeration(...list)}`
 }
 
