@@ -57,28 +57,31 @@ const humanizeMonths = (monthsFloat) => {
     
     return [years, months, weeks, days]
   }
+  
   const isPlural = (num, pluralStr) => {
     let plural = pluralStr || 's'
     if (num !== 1) return plural
     return ''
   }
+  
   const stringify = (num, name, pluralStr) => {
     //  \xA0 = &nbsp;          ____
     return (num > 0)  ? `${num}\xA0${name}${isPlural(num, pluralStr)}` : ''
   }
+  
   const enumeration = (...elements) => {
-    let result = ''
-    switch (elements.length) {
-      case 0: return UI_MSG.defaultError
-      case 1: return `${elements[0]}.`
-      //  \xA0 = &nbsp;               ____
-      case 2: return `${elements[0]} y\xA0${elements[1]}.`
-      default:
-        result += elements.slice(0, -1).join(', ')
-        // \xA0 = &nbsp;      
-        result += ` y\xA0${elements.slice(-1)}.`
-        return result
+    const longEnumeration = () => {
+        let everyElemButLast = elements.slice(0, -1).join(', ')
+        let lastElement      = elements.slice(-1)
+        return `${everyElemButLast} y\xA0${lastElement}.`
+     }
+    const cases = { 
+      0: UI_MSG.defaultError,
+      1: `${elements[0]}.`,
+      2: `${elements[0]} y\xA0${elements[1]}.`,
+      default: longEnumeration
       }
+      return cases[elements.length] || cases['default']()
     }
   
   let years, months, weeks, days
