@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/esquinas/deployable.svg?branch=master)](https://travis-ci.org/esquinas/deployable)
+[![Build Status](https://travis-ci.org/esquinas/que-jamon-elegir.svg?branch=master)](https://travis-ci.org/esquinas/que-jamon-elegir)
 # deployable.site
 > See this project deployed at https://deployable.site
 
