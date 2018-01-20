@@ -3,7 +3,7 @@ import './index.scss'
 
 const UI_MSG = {
   // 1) \xA0 = &nbsp;                      1___
-  pathToHighResImg: '/images/jamones-ibericos.jpg'   
+  pathToHighResImg: '/images/jamones-ibericos.jpg',
   initialMessage: 'Calculadora de tiempo de\xA0curación.',
   initialMonth: '1',
   initialYear: (() => {
