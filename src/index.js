@@ -2,7 +2,8 @@ import { h, app } from 'hyperapp'
 import './index.scss'
 
 const UI_MSG = {
-  // 1) \xA0 = &nbsp;                      1___    
+  // 1) \xA0 = &nbsp;                      1___
+  pathToHighResImg: '/images/jamones-ibericos.jpg'   
   initialMessage: 'Calculadora de tiempo de\xA0curación.',
   initialMonth: '1',
   initialYear: (() => {
@@ -162,7 +163,7 @@ const padNum = (num) => {
 const CardTitle = ({state}) => (<span className='card-title'><h4 className=''>{state.title}</h4></span>)
 
 const CardImage = () => (<div class='card-image'>
-  <img src='https://images.unsplash.com/photo-1504078523815-26230dc58e52?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ%3D%3D&s=565c54486c34caf194699e74368404e0' alt='Jamones curándose en un secadero'/>
+  <img id='high-res-img' src='/images/jamones-ibericos-low-res.jpg' alt='Jamones curándose en un secadero'/>
     <span className='col s12 card-title cyan-text text-lighten-3 over-image'>¿Cuánto tiempo hace desde la entrada en sal de un jamón?</span>
   </div>)
 
@@ -254,3 +255,5 @@ const rootElem = document.getElementById('app')
 
 app(state, actions, view, rootElem)
 
+// Load image.
+document.getElementById('high-res-img').src = UI_MSG.pathToHighResImg
