@@ -162,7 +162,7 @@ const padNum = (num) => {
 const CardTitle = ({state}) => (<span className='card-title'><h4 className=''>{state.title}</h4></span>)
 
 const CardImage = () => (<div class='card-image'>
-  <img id='high-res-img' src='/images/jamones-ibericos-low-res.jpg' alt='Jamones curándose en un secadero'/>
+  <img id='high-res-img' src='/images/jamones-ibericos.jpg' alt='Jamones curándose en un secadero'/>
     <span className='col s12 card-title cyan-text text-lighten-3 over-image'>¿Cuánto tiempo hace desde la entrada en sal de un jamón?</span>
   </div>)
 
