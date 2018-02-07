@@ -1,22 +1,8 @@
 import { h, app } from 'hyperapp'
+import view from './view'
+import UI_MSG from './spanish'
 import './index.scss'
 
-const UI_MSG = {
-  // 1) \xA0 = &nbsp;                      1___
-  initialMessage: 'Calculadora de tiempo de\xA0curación.',
-  initialMonth: '1',
-  initialYear: (() => {
-    let currYear = new Date()
-    let result = currYear.getFullYear() - 2
-    result = String(result)
-    result = result.substring(2, 4)
-    return result })(),
-  validationSuccess: '✓ Ok',
-  // ERRORS.  1) \xA0 = &nbsp;                   1___ 
-  validationError: '✗ Incorrecto' ,
-  defaultError:   'Error, por favor, inténtalo de\xA0nuevo.',
-  futureError:    'Error, por favor, inténtalo de\xA0nuevo.'
-}
 
 /**
  *     FUNCTIONS FOR M.A.P.A. IMPLEMENTATION
@@ -38,7 +24,7 @@ const monthsSinceSalting = (Mapa) => {
     return n * 100
   }
   let today = new Date()
-  let milliseconds = today.getTime() - MapaToDate(Mapa).getTime() 
+  let milliseconds = today.getTime() - MapaToDate(Mapa).getTime()
   if (milliseconds < 0) return UI_MSG.futureError
   return humanizeMonths(milliseconds / MILLSECS_IN_A_MONTH)
 }
@@ -52,30 +38,30 @@ const humanizeMonths = (monthsFloat) => {
     remaining -= months
     days = Math.round(remaining * 30.44)
     weeks = Math.floor(days / 7)
-    remaining = days - (weeks * 7) 
+    remaining = days - (weeks * 7)
     days = (years === 0 && months === 0) ? remaining : 0
-    
+
     return [years, months, weeks, days]
   }
-  
+
   const isPlural = (num, pluralStr) => {
     let plural = pluralStr || 's'
     if (num !== 1) return plural
     return ''
   }
-  
+
   const stringify = (num, name, pluralStr) => {
     //  \xA0 = &nbsp;          ____
     return (num > 0)  ? `${num}\xA0${name}${isPlural(num, pluralStr)}` : ''
   }
-  
+
   const enumeration = (...elements) => {
     const longEnumeration = () => {
         let everyElemButLast = elements.slice(0, -1).join(', ')
         let lastElement      = elements.slice(-1)
         return `${everyElemButLast} y\xA0${lastElement}.`
      }
-    const cases = { 
+    const cases = {
       0: UI_MSG.defaultError,
       1: `${elements[0]}.`,
       2: `${elements[0]} y\xA0${elements[1]}.`,
@@ -83,7 +69,7 @@ const humanizeMonths = (monthsFloat) => {
       }
       return cases[elements.length] || cases['default']()
     }
-  
+
   let years, months, weeks, days
   [years, months, weeks, days] = destructurMonths(monthsFloat)
   let list = []
@@ -137,7 +123,7 @@ const saveCurrentDecade = () => {
   let year = String(today.getFullYear())
 
   currDecade = year.substr(-2, 1)
-  
+
   localStorage.setItem('currentDecade', currDecade)
   return currDecade
 }
@@ -156,75 +142,17 @@ const padNum = (num) => {
   return ('00' + num).substr(-2, 2);
 }
 
+
 /**
- *     COMPONENTS
- */
-const CardTitle = ({state}) => (<span className='card-title'><h4 className=''>{state.title}</h4></span>)
-
-const CardImage = () => (<div class='card-image'>
-  <img id='high-res-img' src='/images/jamones-ibericos.jpg' alt='Jamones curándose en un secadero'/>
-    <span className='col s12 card-title cyan-text text-lighten-3 over-image'>¿Cuánto tiempo hace desde la entrada en sal de un jamón?</span>
-  </div>)
-
-// TODO: Add (?) button on image to get help finding MAPA stamp.
-
-const CardText = () => <p className='flow-text'>
-  Introduce debajo las cifras del sello <a 
-                                          title='Sello de entrada en salazón creado por el Ministerio de Agricultura, Pesca y Alimentación (MAPA), actualmente conocido como MAGRAMA'
-                                          href='http://www.jamonlovers.es/el-sello-mapa-en-los-jamones-ibericos-el-dni-del-jamon/' target='_blank'>M.A.P.A.</a> </p>
-
-const CardButtons = ({state, actions}) => (
-  <div className='row'>
-    <div className='col s5 l6 center'>
-      <button class='btn-flat teal-text' href='#!'
-         onclick={ actions.reset }>
-        Borrar</button>
-    </div>
-    <div className='col s7 l6 center'>
-      <button type='submit' class='btn' href='#!' 
-         onclick={actions.update}>
-          Calcular
-       </button>
-     </div>
-  </div>)
- 
-const MonthsInput = ({state, actions}) => (
-  <div className='input-field col s6'>
-    <input id='months-input' name='months-input' type='number' className='validate'
-      min='0' max='53' step='1' 
-      value={state.months}
-      onchange={() => actions.updateMonths(document.getElementById('months-input').value)}
-      autofocus
-      />
-  <label for='months-input' 
-    data-error={UI_MSG.validationError} 
-    data-success={UI_MSG.validationSuccess}  >Dos primeras cifras</label>
-  </div>)
-
-const YearInput = ({state, actions}) => (
-<div className='input-field col s6'>
-    <input id='year-input' name='year-input' type='number' className='validate' 
-      min='0' max='99' step='1' 
-      value={state.year}
-      onchange={() => actions.updateYear(document.getElementById('year-input').value)}
-      //oncreate={element => element.value = state.year}
-     />
-  <label for='year-input'
-    data-error={UI_MSG.validationError} 
-    data-success={UI_MSG.validationSuccess}>Última/s cifra/s</label>
-  </div>)
-
-/** 
  *     HIPERAPP
  */
 
 //    STATE
-const state = { 
-  months: UI_MSG.initialMonth, 
+const state = {
+  months: UI_MSG.initialMonth,
   year:   UI_MSG.initialYear,
   title:  UI_MSG.initialMessage
               }
-
 //    ACTIONS
 const actions = {
   update: () => state =>  ({
@@ -235,22 +163,6 @@ const actions = {
   reset: () => state => ({title: UI_MSG.initialMessage, months: UI_MSG.initialMonth, year: UI_MSG.initialYear})
   }
 
-//    VIEW
-const view = (state, actions) =>  
-  <div className='card white z-depth-3 hoverable'>
-    <CardImage/>
-    <div className='card-content'>
-      <CardTitle state={state}/>
-      <CardText/>
-      <div className='card-action row'>
-        <MonthsInput state={state} actions={actions}/>
-        <YearInput state={state} actions={actions}/>
-      </div>
-      <CardButtons state={state} actions={actions}/>
-    </div>
-  </div>
-
 const rootElem = document.getElementById('app')
 
 app(state, actions, view, rootElem)
-
