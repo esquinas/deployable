@@ -1,4 +1,3 @@
-import { h } from 'hyperapp'
 import UI_MSG from './spanish'
 
 const state = {

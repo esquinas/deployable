@@ -59,6 +59,9 @@ const YearInput = ({state, actions}) => (
     data-success={UI_MSG.validationSuccess}>Última/s cifra/s</label>
   </div>)
 
+/**
+ *     VIEW
+ */
 const view = (state, actions) =>
   <div className='card white z-depth-3 hoverable'>
     <CardImage/>
