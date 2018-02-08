@@ -1,4 +1,4 @@
-const UI_MSG = {
+const spanish = {
   // 1) \xA0 = &nbsp;                      1___
   initialMessage: 'Calculadora de tiempo de\xA0curación.',
   initialMonth: '1',
@@ -15,4 +15,4 @@ const UI_MSG = {
   futureError:    'Error, por favor, inténtalo de\xA0nuevo.'
 }
 
-export default UI_MSG
+export default spanish
