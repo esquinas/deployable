@@ -1,4 +1,5 @@
 import { h, app } from 'hyperapp'
+import actions from './actions'
 import view from './view'
 import UI_MSG from './spanish'
 import './index.scss'
@@ -153,15 +154,6 @@ const state = {
   year:   UI_MSG.initialYear,
   title:  UI_MSG.initialMessage
               }
-//    ACTIONS
-const actions = {
-  update: () => state =>  ({
-    title: monthsSinceSalting(padNum(state.months) + state.year)
-  }),
-  updateMonths: (newMonths) => state =>  ({ months: newMonths  }),
-  updateYear: (newYear) => state =>  ({ year: newYear  }),
-  reset: () => state => ({title: UI_MSG.initialMessage, months: UI_MSG.initialMonth, year: UI_MSG.initialYear})
-  }
 
 const rootElem = document.getElementById('app')
 
