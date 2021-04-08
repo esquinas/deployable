@@ -4,7 +4,7 @@
   "description": "Webapp para saber cómo escoger un buen jamón ibérico de bellota",
   "display": "fullscreen",
   "scope": "/que-jamon-elegir",
-  "start_url": "/",
+  "start_url": "/que-jamon-elegir",
   "theme_color": "white",
   "background_color": "#c8e6c9",
   "orientation": "portrait",
