@@ -1,9 +1,9 @@
 {
-  "short_name": "QueJamonElegir.com",
-  "name": "QuéJamónElegir.com Web App",
+  "short_name": "QueJamonElegir",
+  "name": "QuéJamónElegir Web App",
   "description": "Webapp para saber cómo escoger un buen jamón ibérico de bellota",
   "display": "fullscreen",
-  "scope": "/",
+  "scope": "/que-jamon-elegir",
   "start_url": "/",
   "theme_color": "white",
   "background_color": "#c8e6c9",
@@ -11,15 +11,15 @@
   "dir": "ltr",
   "lang": "es",
   "icons": [{
-    "src": "/icons/apple-touch-icon.png",
+    "src": "icons/apple-touch-icon.png",
     "sizes": "180x180",
     "type": "image/png"
   },{
-    "src": "/icons/android-chrome-192x192.png",
+    "src": "icons/android-chrome-192x192.png",
     "sizes": "192x192",
     "type": "image/png"
   },{
-    "src": "/icons/android-chrome-512x512.png",
+    "src": "icons/android-chrome-512x512.png",
     "sizes": "512x512",
     "type": "image/png"
   }]
